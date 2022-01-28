@@ -17,6 +17,7 @@ beancount = "^2.3.4"
 mypy = "^0.931"
 black = "^21.12b0"
 flake8 = "^4.0.1"
+twine = "^3.7.1"
 
 [tool.black]
 line-length = 79

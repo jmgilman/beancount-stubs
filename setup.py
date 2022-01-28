@@ -12,7 +12,7 @@ def find_stubs(package):
     return stubs
 
 
-with open("README.rst", "r") as f:
+with open("README.md", "r") as f:
     LONG_DESCRIPTION = f.read()
 
 setup(
@@ -20,7 +20,7 @@ setup(
     version="0.1.0",
     description="Stub files for the beancount package",
     long_description=LONG_DESCRIPTION,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     packages=["beancount-stubs"],
     package_data={
         "beancount-stubs": find_stubs("beancount-stubs"),
