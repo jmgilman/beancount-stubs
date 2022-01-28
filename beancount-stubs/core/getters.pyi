@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import datetime
 
 from beancount.core.data import Account, Close, Commodity, Directive, Open

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from beancount.core.data import Account, Directive, Posting, TxnPosting
 from beancount.core.display_context import DisplayFormatter
 from beancount.core.inventory import Inventory

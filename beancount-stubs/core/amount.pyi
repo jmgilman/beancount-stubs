@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from beancount.core.display_context import DisplayContext
 from decimal import Decimal
 from tokenize import Name
