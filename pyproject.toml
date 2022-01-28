@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "beancount-stubs"
+version = "0.1.0"
+description = "Stub files for the beancount package"
+authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+beancount = "^2.3.4"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.931"
+black = "^21.12b0"
+flake8 = "^4.0.1"
+
+[tool.black]
+line-length = 79
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
