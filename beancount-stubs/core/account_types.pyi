@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from beancount.core.data import Account
-from typing import Any, NamedTuple
+from typing import Any
 
 class AccountTypes:
     assets: str
@@ -7,6 +9,15 @@ class AccountTypes:
     equity: str
     income: str
     expenses: str
+    def __new__(
+        cls,
+        assets: str,
+        equity: str,
+        income: str,
+        expenses: str,
+    ) -> AccountTypes: ...
+    def _replace(self: AccountTypes) -> AccountTypes: ...
+    def _asdict(self: AccountTypes) -> dict[str, Any]: ...
 
 DEFAULT_ACCOUNT_TYPES: AccountTypes
 

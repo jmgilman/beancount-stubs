@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 import datetime
 
-from decimal import Decimal
 from beancount.core.data import (
     Account,
     Currency,
@@ -9,17 +10,27 @@ from beancount.core.data import (
     Transaction,
 )
 from beancount.core.inventory import Inventory
-from typing import Any, NamedTuple
+from decimal import Decimal
+from typing import Any
 
 MAXIMUM_TOLERANCE: Decimal
 MAX_TOLERANCE_DIGITS: int
 
 def is_tolerance_user_specified(tolerance: Decimal) -> bool: ...
 
-class BalanceError(NamedTuple):
+class BalanceError:
     source: Any
     message: str
     entry: Directive
+    def __new__(
+        cls,
+        source: Any,
+        equity: str,
+        message: str,
+        entry: Directive,
+    ) -> BalanceError: ...
+    def _replace(self: BalanceError) -> BalanceError: ...
+    def _asdict(self: BalanceError) -> dict[str, Any]: ...
 
 def has_nontrivial_balance(posting: Posting) -> bool: ...
 def compute_residual(postings: list[Posting]) -> Inventory: ...

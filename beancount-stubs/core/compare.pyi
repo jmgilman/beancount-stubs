@@ -1,12 +1,20 @@
-from attr import frozen
-from beancount.core import data as data
-from beancount.core.data import Price as Price
-from typing import Any, NamedTuple
+from __future__ import annotations
 
-class CompareError(NamedTuple):
+from beancount.core.data import Directive
+from typing import Any
+
+class CompareError:
     source: dict[str, Any]
     message: str
     entry: Any
+    def __new__(
+        cls,
+        source: dict[str, Any],
+        message: str,
+        entry: Directive,
+    ) -> CompareError: ...
+    def _replace(self: CompareError) -> CompareError: ...
+    def _asdict(self: CompareError) -> dict[str, Any]: ...
 
 IGNORED_FIELD_NAMES: set
 

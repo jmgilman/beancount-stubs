@@ -14,16 +14,32 @@ class Cost:
     currency: Currency
     date: datetime.date
     label: Optional[str]
+    def __new__(
+        cls,
+        number: Decimal,
+        currency: Currency,
+        date: datetime.date,
+        label: Optional[str],
+    ) -> Cost: ...
     def _replace(self: Cost) -> Cost: ...
     def _asdict(self: Cost) -> dict[str, Any]: ...
 
 class CostSpec:
     number_per: Optional[Decimal]
     number_total: Optional[Decimal]
-    currency: Optional[str]
+    currency: Optional[Currency]
     date: Optional[datetime.date]
     label: Optional[str]
     merge: Optional[bool]
+    def __new__(
+        cls,
+        number_per: Optional[Decimal],
+        number_total: Optional[Decimal],
+        currency: Optional[Currency],
+        date: Optional[datetime.date],
+        label: Optional[str],
+        merge: Optional[bool],
+    ) -> CostSpec: ...
     def _replace(self: CostSpec) -> CostSpec: ...
     def _asdict(self: CostSpec) -> dict[str, Any]: ...
 
@@ -46,7 +62,7 @@ class Position:
     cost: Cost | CostSpec
     cost_types: tuple[type[Cost], type[CostSpec]]
     def __new__(
-        cls: type[Position], units: Amount, cost: Cost | CostSpec | None = ...
+        cls, units: Amount, cost: Cost | CostSpec | None = ...
     ) -> Position: ...
     def __hash__(self: Position) -> int: ...
     def to_string(
