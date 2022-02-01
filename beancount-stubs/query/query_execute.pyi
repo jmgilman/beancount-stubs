@@ -13,7 +13,12 @@ from beancount.core.data import (
     Transaction,
 )
 from beancount.core.inventory import Inventory
-from beancount.query.query_compile import EvalFrom, EvalNode, EvalPrint
+from beancount.query.query_compile import (
+    EvalFrom,
+    EvalNode,
+    EvalPrint,
+    EvalQuery,
+)
 from decimal import Decimal
 from typing import Any, Optional, IO
 
@@ -54,7 +59,7 @@ def create_row_context(
     entries: list[Directive], options_map: dict[str, Any]
 ) -> RowContext: ...
 def execute_query(
-    query: str, entries: list[Directive], options_map: dict[str, Any]
+    query: EvalQuery, entries: list[Directive], options_map: dict[str, Any]
 ) -> tuple[list[tuple[str, type]], list[Any]]: ...
 def flatten_results(
     result_types: list[tuple[str, type]], result_rows: list[Any]

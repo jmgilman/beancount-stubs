@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "beancount-stubs"
-version = "0.1.1"
+version = "0.1.2"
 description = "Stub files for the beancount package"
 authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
 license = "MIT"

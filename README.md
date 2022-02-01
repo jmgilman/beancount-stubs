@@ -42,6 +42,7 @@ The following subpackages/modules are currently supported:
 * `beancount.loader`
 * `beancount.core.*`
 * `beancount.query.numberify`
+* `beancount.query.query`
 * `beancount.query.query_compile`
 * `beancount.query.query_execute`
 

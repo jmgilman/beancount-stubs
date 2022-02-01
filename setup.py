@@ -17,7 +17,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="beancount-stubs",
-    version="0.1.1",
+    version="0.1.2",
     description="Stub files for the beancount package",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
