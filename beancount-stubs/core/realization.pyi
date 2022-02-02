@@ -9,7 +9,7 @@ _T = TypeVar("_T")
 
 class RealAccount(dict):
     account: Account
-    txn_postings: list[TxnPosting]
+    txn_postings: list[Directive]
     balance: Inventory
     def __init__(
         self: RealAccount,

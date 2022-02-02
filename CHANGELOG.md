@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2022-02-01
+
+### Changed
+
+- Fixed incorrect return type on `query.run_query`
+- Fixed incorrect type on `RealAccount.txn_postings`
+
 ## [0.1.2] - 2022-02-01
 
 ### Added
@@ -32,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/jmgilman/beancount-stubs/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/jmgilman/beancount-stubs/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/jmgilman/beancount-stubs/releases/tag/v0.1.3
 [0.1.2]: https://github.com/jmgilman/beancount-stubs/releases/tag/v0.1.2
 [0.1.1]: https://github.com/jmgilman/beancount-stubs/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jmgilman/beancount-stubs/releases/tag/v0.1.0
