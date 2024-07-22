@@ -3,7 +3,7 @@ from __future__ import annotations
 from beancount.core.data import Account, Directive, Posting, TxnPosting
 from beancount.core.display_context import DisplayFormatter
 from beancount.core.inventory import Inventory
-from typing import Any, Callable, Iterator, TypeVar
+from typing import Any, Callable, Iterable, Iterator, Sequence, TypeVar
 
 _T = TypeVar("_T")
 
@@ -34,25 +34,25 @@ def get_or_create(
 ) -> RealAccount: ...
 def contains(real_account: RealAccount, account_name: Account) -> bool: ...
 def realize(
-    entries: list[Directive],
-    min_accounts: list[Account] | None = ...,
+    entries: Iterable[Directive],
+    min_accounts: Iterable[Account] | None = ...,
     compute_balance: bool = ...,
 ) -> RealAccount: ...
 def postings_by_account(
-    entries: list[Directive],
+    entries: Iterable[Directive],
 ) -> list[dict[Account, TxnPosting | Directive]]: ...
 def filter(
     real_account: RealAccount, predicate: Callable[[RealAccount], bool]
 ) -> RealAccount: ...
 def get_postings(real_account: RealAccount) -> list[Posting | Directive]: ...
 def iterate_with_balance(
-    txn_postings: list[Posting | Directive],
+    txn_postings: Iterable[Posting | Directive],
 ) -> Iterator[tuple[Directive, list[Posting], Inventory, Inventory]]: ...
 def compute_balance(
     real_account: RealAccount, leaf_only: bool = ...
 ) -> Inventory: ...
 def find_last_active_posting(
-    txn_postings: list[Posting | Directive],
+    txn_postings: Sequence[Posting | Directive],
 ) -> Directive | None: ...
 def index_key(
     sequence: list[_T],
@@ -75,5 +75,5 @@ def dump_balances(
     file: Any | None = ...,
 ) -> str | None: ...
 def compute_postings_balance(
-    txn_postings: list[Posting | Directive],
+    txn_postings: Iterable[Posting | Directive],
 ) -> Inventory: ...
