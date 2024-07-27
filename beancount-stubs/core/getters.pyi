@@ -56,5 +56,5 @@ def get_commodity_directives(
 def get_values_meta(
     name_to_entries_map: dict[str, Optional[Directive]],
     *meta_keys: list[str],
-    default: Any | None = ...
+    default: Any | None = ...,
 ) -> dict[str, Any]: ...
