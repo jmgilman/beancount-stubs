@@ -1,23 +1,23 @@
 on:
   push:
     paths-ignore:
-      - '.github/**'
-      - '.vscode/**'
-      - '**.toml'
-      - '**.md'
+      - ".github/**"
+      - ".vscode/**"
+      - "**.toml"
+      - "**.md"
   pull_request:
     paths-ignore:
-      - '.github/**'
-      - '.vscode/**'
-      - '**.toml'
-      - '**.md'
+      - ".github/**"
+      - ".vscode/**"
+      - "**.toml"
+      - "**.md"
   workflow_dispatch:
 
 name: CI
 
 env:
-  POETRY_VERSION: "1.1.5"
-  PYTHON_VERSION: "3.8"
+  POETRY_VERSION: "1.8.3"
+  PYTHON_VERSION: "3.8.18"
   TWINE_USERNAME: __token__
   TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
@@ -26,12 +26,12 @@ jobs:
     name: Run linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
@@ -42,12 +42,12 @@ jobs:
     name: Validate formatting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
@@ -58,12 +58,12 @@ jobs:
     name: Validate type checking
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
@@ -76,12 +76,12 @@ jobs:
     if: startsWith(github.event.ref, 'refs/tags/v')
     needs: [lint, format, type]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v3
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
