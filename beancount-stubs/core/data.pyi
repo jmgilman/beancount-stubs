@@ -106,7 +106,7 @@ class Balance:
 
 class Posting:
     account: Account
-    units: Amount
+    units: Optional[Amount]
     cost: Optional[Union[Cost, CostSpec]]
     price: Optional[Amount]
     flag: Optional[Flag]
