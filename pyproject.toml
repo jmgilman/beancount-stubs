@@ -4,10 +4,7 @@ version = "0.1.3"
 description = "Stub files for the beancount package"
 authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
 license = "MIT"
-packages = [
-    { include = "beancount-stubs" },
-    { include = "beancount-stubs/**/*.pyi" },
-]
+packages = [{include = "beancount-stubs"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
