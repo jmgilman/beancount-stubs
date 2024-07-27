@@ -22,16 +22,18 @@ def load_file(
     filename: str,
     log_timings: TextIO | Callable[[str], None] | None = ...,
     log_errors: TextIO | Callable[[str], None] | None = ...,
-    extra_validations: Callable[[list[Directive], dict[str, Any]], list]
-    | None = ...,
+    extra_validations: (
+        Callable[[list[Directive], dict[str, Any]], list] | None
+    ) = ...,
     encoding: str | None = ...,
 ) -> tuple[list[Directive], list, dict[str, Any]]: ...
 def load_encrypted_file(
     filename: str,
     log_timings: TextIO | Callable[[str], None] | None = ...,
     log_errors: TextIO | Callable[[str], None] | None = ...,
-    extra_validations: Callable[[list[Directive], dict[str, Any]], list]
-    | None = ...,
+    extra_validations: (
+        Callable[[list[Directive], dict[str, Any]], list] | None
+    ) = ...,
     dedent: bool = ...,
     encoding: str | None = ...,
 ) -> tuple[list[Directive], list, dict[str, Any]]: ...
@@ -50,8 +52,9 @@ def load_string(
     string: str,
     log_timings: TextIO | Callable[[str], None] | None = ...,
     log_errors: TextIO | Callable[[str], None] | None = ...,
-    extra_validations: Callable[[list[Directive], dict[str, Any]], list]
-    | None = ...,
+    extra_validations: (
+        Callable[[list[Directive], dict[str, Any]], list] | None
+    ) = ...,
     dedent: bool = ...,
     encoding: str | None = ...,
 ): ...
