@@ -20,7 +20,7 @@ def project(
     base_currencies: Optional[set[Currency]] = ...,
 ) -> PriceMap: ...
 def normalize_base_quote(
-    base_quote: str | tuple[Currency, Currency]
+    base_quote: str | tuple[Currency, Currency],
 ) -> tuple[Currency, Currency]: ...
 def get_all_prices(
     price_map: dict[tuple[Currency, Currency], tuple[datetime.date, Decimal]],
