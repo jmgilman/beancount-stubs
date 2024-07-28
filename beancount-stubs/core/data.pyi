@@ -7,6 +7,7 @@ from beancount.core.amount import Amount
 from beancount.core.position import Cost, CostSpec
 from decimal import Decimal
 from typing import (
+    AbstractSet,
     Any,
     Iterator,
     Optional,
@@ -129,8 +130,8 @@ class Transaction:
     flag: Flag
     payee: Optional[str]
     narration: str
-    tags: Optional[set]
-    links: Optional[set]
+    tags: Optional[AbstractSet]
+    links: Optional[AbstractSet]
     postings: list[Posting]
     def __new__(
         cls,
@@ -139,8 +140,8 @@ class Transaction:
         flag: Flag,
         payee: Optional[str],
         narration: str,
-        tags: Optional[set],
-        links: Optional[set],
+        tags: Optional[AbstractSet],
+        links: Optional[AbstractSet],
         postings: list[Posting],
     ) -> Transaction: ...
     def _replace(self: Transaction, /, **kwargs) -> Transaction: ...
