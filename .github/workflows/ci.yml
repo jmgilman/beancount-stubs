@@ -16,79 +16,50 @@ on:
 name: CI
 
 env:
-  POETRY_VERSION: "1.8.3"
   PYTHON_VERSION: "3.8.18"
   TWINE_USERNAME: __token__
   TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
 
 jobs:
   lint:
-    name: Run linter
+    name: Lint, check format and typing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: eifinger/setup-rye@v4
+        id: setup-rye
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Setup Poetry
-        uses: abatilo/actions-poetry@v3
-        with:
-          poetry-version: ${{ env.POETRY_VERSION }}
+          enable-cache: true
+          cache-prefix: ${{ env.PYTHON_VERSION }}
+      - name: Pin python-version ${{ env.PYTHON_VERSION }}
+        if: steps.setup-rye.outputs.cache-hit != 'true'
+        run: rye pin ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
-        run: poetry install
-      - name: Run flake8
-        run: poetry run flake8 --config .flake8 $(git ls-files "*.pyi")
-  format:
-    name: Validate formatting
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Setup Poetry
-        uses: abatilo/actions-poetry@v3
-        with:
-          poetry-version: ${{ env.POETRY_VERSION }}
-      - name: Install dependencies
-        run: poetry install
-      - name: Run black
-        run: poetry run black --diff --check $(git ls-files '*.pyi')
-  type:
-    name: Validate type checking
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Setup Poetry
-        uses: abatilo/actions-poetry@v3
-        with:
-          poetry-version: ${{ env.POETRY_VERSION }}
-      - name: Install dependencies
-        run: poetry install
+        if: steps.setup-rye.outputs.cache-hit != 'true'
+        run: rye sync --no-lock
+      - name: Run rye lint
+        run: rye lint $(git ls-files "*.pyi")
+      - name: Run rye fmt
+        run: rye fmt $(git ls-files "*.pyi") -- --diff --check
       - name: Run mypy
-        run: poetry run mypy --explicit-package-bases $(git ls-files "*.pyi")
+        run: rye run mypy --explicit-package-bases $(git ls-files "*.pyi")
   push:
     name: Push to PyPi
     runs-on: ubuntu-latest
     if: startsWith(github.event.ref, 'refs/tags/v')
-    needs: [lint, format, type]
+    needs: [lint]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: eifinger/setup-rye@v4
+        id: setup-rye
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      - name: Setup Poetry
-        uses: abatilo/actions-poetry@v3
-        with:
-          poetry-version: ${{ env.POETRY_VERSION }}
+          enable-cache: true
+          cache-prefix: ${{ env.python-version }}
       - name: Install dependencies
-        run: poetry install
+        run: rye sync --no-lock
       - name: Build
-        run: poetry run python setup.py sdist bdist_wheel
+        run: rye build
       - name: Verify
-        run: poetry run twine check dist/*
+        run: rye run twine check dist/*
       - name: Upload
-        run: poetry run twine upload dist/*
+        run: rye run twine upload dist/*
