@@ -6,5 +6,5 @@ def run_query(
     options_map: dict[str, Any],
     query: str,
     *format_args,
-    numberify: bool = ...
+    numberify: bool = ...,
 ) -> tuple[list[tuple[str, type]], list[Any]]: ...
