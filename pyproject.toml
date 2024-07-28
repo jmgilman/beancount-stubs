@@ -1,25 +1,41 @@
-[tool.poetry]
+[project]
 name = "beancount-stubs"
 version = "0.1.3"
+dependencies = ["beancount>=2.3.6,<3"]
+requires-python = ">= 3.8.18"
+authors = [{ name = "Joshua Gilman", email = "joshuagilman@gmail.com" }]
 description = "Stub files for the beancount package"
-authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
-license = "MIT"
-packages = [{ include = "beancount-stubs" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["beancount", "stubs", "mypy", "types"]
 
-[tool.poetry.dependencies]
-python = "^3.8.18"
-beancount = "^2.3.6"
+[project.urls]
+Repository = "https://github.com/jmgilman/beancount-stubs"
 
-[tool.poetry.dev-dependencies]
-mypy = "^1.11"
-black = "^24.4.2"
-flake8 = "^7.1.0"
-twine = "^5.1.1"
-docutils = "!=0.21.post1"
-
-[tool.black]
-line-length = 79
+[tool.rye]
+managed = true
+dev-dependencies = ["mypy>=1.11", "twine>=5.1.1"]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint.per-file-ignores]
+"**/*.pyi" = [
+  "E301",
+  "E302",
+  "E305",
+  "E501",
+  "E701",
+  "E741",
+  "F401",
+  "F403",
+  "F405",
+  "F822",
+]
