@@ -32,7 +32,6 @@ jobs:
           enable-cache: true
           cache-prefix: ${{ env.PYTHON_VERSION }}
       - name: Pin python-version ${{ env.PYTHON_VERSION }}
-        if: steps.setup-rye.outputs.cache-hit != 'true'
         run: rye pin ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         if: steps.setup-rye.outputs.cache-hit != 'true'
@@ -55,6 +54,8 @@ jobs:
         with:
           enable-cache: true
           cache-prefix: ${{ env.python-version }}
+      - name: Pin python-version ${{ env.PYTHON_VERSION }}
+        run: rye pin ${{ env.PYTHON_VERSION }}
       - name: Install dependencies
         run: rye sync --no-lock
       - name: Build
