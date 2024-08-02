@@ -3,13 +3,11 @@ on:
     paths-ignore:
       - ".github/**"
       - ".vscode/**"
-      - "**.toml"
       - "**.md"
   pull_request:
     paths-ignore:
       - ".github/**"
       - ".vscode/**"
-      - "**.toml"
       - "**.md"
   workflow_dispatch:
 
