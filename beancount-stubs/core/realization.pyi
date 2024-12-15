@@ -75,5 +75,5 @@ def dump_balances(
     file: Any | None = ...,
 ) -> str | None: ...
 def compute_postings_balance(
-    txn_postings: Iterable[Posting | Directive],
+    txn_postings: Iterable[Posting | TxnPosting | Directive],
 ) -> Inventory: ...
