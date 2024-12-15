@@ -1,6 +1,6 @@
 [project]
 name = "beancount-stubs"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = ["beancount>=2.3.6,<3"]
 requires-python = ">= 3.8.18"
 authors = [{ name = "Joshua Gilman", email = "joshuagilman@gmail.com" }]
